@@ -1,0 +1,135 @@
+
+/**@ Project-- GPS CLock
+
+   *@ Team lead  : Vipul Jha 
+
+   *@ Developer : Vivek Yadav
+
+	*@ Others : 
+----------------------------------------------------------------------------------
+   @ Version CC.HH.SS
+	-- CC : Company
+	-- HH : Hardware-How many hardware required for this End
+	-- SS : Software
+
+   @ Master :
+	-- Take data from GPS
+	-- Server NodeMcu will process and Parse data and Find required Time Only.
+	-- Then Send that data to Client NodeMcu.
+	-- 
+	
+   @ Slave : 
+	-- Take data from Server Or Master
+	-- Update RTC
+	-- Now read data from RTC
+	-- Display On seven Segment
+----------------------------------------------------------------------------------
+
+  @ Notifications :
+	-- Every funcation should return Something. Try to avoid "void".
+	-- All same type funcations should be in different .cpp file with
+	   its corresponding .h file.
+	-- Comments are neccessary to explain about funcation working.
+		Format :
+		/****************************************************************/
+		/*	>>>>	Explain	 <<<<   	 			*/
+		/*	@ purpose of funcation		 			*/
+		/*	@ parametrs if any		 			*/
+		/*	@ return type			 			*/
+		/*		@ Dependency -Funcation made for supporting     */
+		/*		  only this funcation.  			*/
+		/****************************************************************/
+		
+	-- Use standard notations while naming funcations.
+	-- Funcation name somehow give idea about working.
+	-- Always Write debug points or Check points and write comment
+	   about all the worries a developer/Tester Should care.
+	-- Whenever use macro write commant "// Macro" and decalre it in 
+	   headerfile. and mention that file into comment. 
+	-- Macro should be in Capital Latters.
+	-- Indentation is necessary. You are not writing a code assume coding
+	   like you are writing your Carriculam Vitale. :-)
+----------------------------------------------------------------------------------    
+
+   @ V 00.02.00
+	CC : Axis Lab
+	HH : NodeMcu(ESP8266) + GPS + RTC + 7-Segment + Phone(Bridge)
+	SS : 00 
+
+   @ Key points :
+	>>	: Client and Server IP is static
+	>>	: All devices are set at 9600 baud rate.
+	>>	: GPS data is Coming and we are parshing time data and Sending 
+		  time String to Client Sucessfully.	
+
+
+
+   @ Possibilities :
+	>>	: We can use event handler for Connection checking funcations.
+	>>	: we can obselete " void Out_Format() " fucation.	
+	>>	: "String GPS_read() " funcation can be more general. it should
+		  parshed and return following data.
+			-- Time
+			-- Date
+			-- Longitute & Latitute
+	>>	: "bool GetDataFromClient() " return type must be String instead 
+		  of bool.
+	>>	: "String GetSerialData() " should return NULL if data is not 
+		  available at Serial port. 
+
+   @ SERVER FUNCATIONS :
+
+	@ String GPS_read() :
+		/******************************************************************/
+		/*	>>>> String GPS_read()  <<<< 	  	 		  */
+		/*	@ To Read the data from GPS ( only time ) 		  */
+		/*	@ parametrs is void		 			  */
+		/*	@ return Time String()			 		  */
+		/*		@ Parsh_time to Parsh the Time and Provide data	  */
+ 		/*		  in a specified format				  */
+		/******************************************************************/
+		
+	@ bool GetDataFromClient() :
+		/******************************************************************/
+		/*	>>>> bool GetDataFromClient()  <<<<  	 		  */
+		/*	@ To get data form client which send by any Cleint to 	  */
+		/*	  Server.Read data untill "\r" charater recevied	  */
+		/*	@ parametrs is void		 			  */
+		/*	@ return bool :						  */
+		/*			True  : If data is received 		  */
+		/*			False : If data is not received		  */
+		/*	 						 	  */
+ 		/******************************************************************/
+
+	@ String GetSerialData() :
+		/******************************************************************/
+		/*	>>>> String GetSerialData() <<<<  	 		  */
+		/*	@ To get data form Serial port.			 	  */
+		/*	  add "\r" charater in recevied	data			  */
+		/*	@ parametrs is void		 			  */
+		/*	@ return String which received from Serial port		  */
+ 		/******************************************************************/
+
+	@ bool CheckClient():
+		/******************************************************************/
+		/*	>>>> bool CheckClient()	  <<<<  	 		  */
+		/*	@ To check the client. that is present or not.	 	  */
+		/*	  if client is not there then try to connect upto 2 sec	  */
+		/*	  before reconnect wait for 200 milli seconds.		  */
+		/*	@ parametrs is void		 			  */
+		/*	@ return bool :						  */
+		/*			True  : If client is available 		  */
+		/*			False : If client is not available.	  */
+		/*	 						 	  */
+ 		/******************************************************************/ 
+
+
+
+
+
+
+
+
+
+		
+    

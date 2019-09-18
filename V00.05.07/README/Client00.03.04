@@ -1,0 +1,179 @@
+
+/**@ Project -- GPS CLock
+
+   *@ Team lead 	 : Vipul Jha 
+
+   *@ Developer 	 : Vivek Yadav
+
+	*@ Others 	 : 
+----------------------------------------------------------------------------------
+   @ Version CC.HH.SS
+	-- CC : Company
+	-- HH : Hardware-How many hardware required for this End
+	-- SS : Software
+
+   @ Master :
+	-- Take data from GPS
+	-- Server NodeMcu will process and Parse data and Find required Time Only.
+	-- Then Send that data to Client NodeMcu.
+	-- 
+	
+   @ Slave : 
+	-- Take data from Server Or Master
+	-- Update RTC
+	-- Now read data from RTC
+	-- Display On seven Segment
+----------------------------------------------------------------------------------
+
+  @ Notifications :
+	-- Every funcation should return Something. Try to avoid "void".
+	-- All same type funcations should be in different .cpp file with
+	   its corresponding .h file.
+	-- Comments are neccessary to explain about funcation working.
+		Format :
+		/****************************************************************/
+		/*	>>>>			Explain			 <<<< 						*/
+		/*	@ purpose of funcation		 								*/
+		/*	@ parametrs if any		 									*/
+		/*	@ return type			 									*/
+		/*		@ Dependency -Funcation made for supporting     		*/
+		/*		  only this funcation.  								*/
+		/****************************************************************/
+		
+	-- Use standard notations while naming funcations.
+	-- Funcation name somehow give idea about working.
+	-- Always Write debug points or Check points and write comment
+	   about all the worries a developer/Tester Should care.
+	-- Whenever use macro write commant "// Macro" and decalre it in 
+	   headerfile. and mention that file into comment.
+	-- Indentation is necessary. You are not writing a code assume coding
+	   like you are writing your Carriculam Vitale. :-)
+----------------------------------------------------------------------------------    
+
+   @ V 00.03.01
+	CC : Axis Lab
+	HH : NodeMcu(ESP8266) + RTC + 7-segment
+	SS : 00 
+
+   @ Key points :
+	>>	: Client and Server IP is static
+	>>	: All devices are set at 9600 baud rate.
+	>>	: GPS data is Coming and we are parshing time data and Sending 
+		  time String to Client Sucessfully.	
+
+
+
+   @ Possibilities :
+	>>	: We can use event handler for Connection checking funcations.
+
+	>>	: "bool GetDataFromServer() " return type must be String instead 
+		  of bool.[COMPLETE]
+	>>	: "String GetSerialData() " should return NULL if data is not 
+		  available at Serial port. [COMPLETE]
+
+	>>	: Obselete CONNECTSERVER() funcation.
+	>>	: CHECKSERVER() should be a Macro
+	>> 	: Make all funcations name into CamleCase style. ONly Macros are
+			are allowed in Capital Letters.
+			
+	>>	: TimeOut concept 
+		  @If server does not get any responese from client Re-Start the
+		    Server.
+		  @If Client does not get any response from Server it Should ReStart
+			itSelf.
+----------------------------------------------------------------------------------------
+
+   @ Issue :
+   
+   >>	: Cleint should check the connection with Server. 
+
+   @ Modifications :
+	>>	: Made structures : it provide more readibility in Client Side.
+			:	
+			typedef struct WiFiNode
+			 {
+  			  const char *host; // Server IP which you want to Connect
+  			  const char *ssid; // name of WiFi
+  			  const char *password; // Password of WiFi
+ 			  const int httpPort;
+			 }WiFiNode;
+
+			typedef struct global
+			{
+  			 String CRD;// Client Read Data
+  			 String CWR;// Client Write Data
+  			 int tout;
+			}global;
+			
+	>>	: make some changes in receiveing data and Sending data. whenever
+		  data come Or you send data then only print otherwise no need to
+		  do print.
+
+	>>	: Cleint-Server is taking too much time to connect each other.
+-------------------------------------------------------------------------------------
+
+   @ Client FUNCATIONS :
+
+	@ String GPS_read() :
+		/******************************************************************/
+		/*	>>>> String GPS_read()  <<<< 	  	 		  */
+		/*	@ To Read the data from GPS ( only time ) 		  */
+		/*	@ parametrs is void		 			  */
+		/*	@ return Time String()			 		  */
+		/*		@ Parsh_time to Parsh the Time and Provide data	  */
+ 		/*		  in a specified format				  */
+		/******************************************************************/
+		
+	@ String GetDataFromServer() :
+		/******************************************************************/
+		/*	>>>> bool GetDataFromServer()  <<<<				  	 		  */
+		/*	@ To get data form Server which send by any Server to	 	  */
+		/*	  Client.Read data untill "\r" charater recevied	  		  */
+		/*	@ parametrs is void		 			  						  */
+		/*	@ return String : update global Structure String 			  */
+		/*			 		  				  							  */
+		/*												  				  */
+		/*	 						 	  								  */
+ 		/******************************************************************/
+
+	@ String GetSerialData() :
+		/******************************************************************/
+		/*	>>>> String GetSerialData() <<<<  	 		 				  */
+		/*	@ To get data form Serial port.			 	  				  */
+		/*	  add "\r" charater in recevied	data			  			  */
+		/*	@ parametrs is void		 			  						  */
+		/*	@ return String : which received from Serial port	  		  */
+		/*		Update global Structure
+ 		/******************************************************************/
+
+	@ bool ConnectServer():
+		/******************************************************************/
+		/*	>>>> bool ConnectServer()	  <<<< 	 		  				  */
+		/*	@ To connect with Server. that is  not present . 	  		  */
+		/*	  if Server is not there then try to connect upto 2 sec	  	  */
+		/*	  before reconnect wait for 200 milli seconds.		  		  */
+		/*	@ parametrs is bool		 			  						  */
+		/*	@ return bool :						  						  */
+		/*			True  : If Server is available 		  				  */
+		/*			False : If Server is not available.	  				  */
+		/*	 						 	  								  */
+ 		/******************************************************************/ 
+		
+		
+	@  void RTC_RESET() :
+		/********************************************************************/
+		/*	>>>> 	RTC_RESET()		<<<<									*/
+		/*	@	UPdate RTC with  zero value in time Section					*/
+		/*	@	return void :												*/		*/
+		/********************************************************************/
+
+	@
+
+
+
+
+
+
+
+		
+    
