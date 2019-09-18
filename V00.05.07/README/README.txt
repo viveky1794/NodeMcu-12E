@@ -1,7 +1,7 @@
 
 /**@ Project-- GPS CLock
 
-   *@ Team lead  : Vipul Jha 
+   *@ Team lead  : 
 
    *@ Developer : Vivek Yadav
 
