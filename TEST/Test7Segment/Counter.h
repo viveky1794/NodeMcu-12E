@@ -8,8 +8,8 @@ extern int Seg_one,Seg_two,Seg_three,Seg_four,Seg_five; // By default Zero
 bool Counter();
 void Inti_Counter();
 
-uint8_t digit(uint8_t ); //used in GPS_Counter internally
-uint8_t digitWdot(uint8_t ); //used in GPS_Counter internally
+//uint8_t digit(uint8_t ); //used in GPS_Counter internally
+//uint8_t digitWdot(uint8_t ); //used in GPS_Counter internally
 
 bool GPS_Counter(int,int,int); // For User
 

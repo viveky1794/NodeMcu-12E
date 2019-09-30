@@ -1,9 +1,3 @@
-/** @Developer : Vivek Yadav
-    @This a part of a project which i did Modify as you want.
-*/
-
-
-
 #include "RTC_RX8025.h"
 
 RX8025_RTC RTC;
